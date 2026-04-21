@@ -121,4 +121,5 @@ Run training
 
 python src/train_lstm.py
 
-Dataset not included due to file size. Please download from Kaggle link in report.
+Note: The trained model file (.keras) is not included due to GitHub file size limits.
+The model can be reproduced by running the training script.
