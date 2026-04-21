@@ -120,3 +120,5 @@ python -m pip install -r requirements.txt
 Run training
 
 python src/train_lstm.py
+
+Dataset not included due to file size. Please download from Kaggle link in report.
