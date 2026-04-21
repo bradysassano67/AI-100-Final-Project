@@ -1,125 +1,106 @@
-Fake News Detection Using Deep Learning
+# AI-100 Final Project – Bug Analysis
 
-Overview
-This project builds a deep learning model to classify news articles as Real or Fake. The goal is to detect misinformation using a Bidirectional LSTM neural network trained on the WELFake dataset.
+## Overview
 
-This was completed as a midterm project for AI 100.
+This project is based on our AI-100 midterm project, where we built a fake news classifier using a Bidirectional LSTM model. The system classifies news articles as **Fake (0)** or **Real (1)** using text data from a labeled dataset.
 
-Problem Definition
-The task is a binary text classification problem.
-Input: News article title and body text
-Output: 1 = Real, 0 = Fake
+For the final project, we reused this system and intentionally introduced bugs into different parts of the pipeline. The goal was to analyze how errors affect the system and improve debugging reasoning using feedback from a large language model (GenAI).
 
-Misinformation spreads rapidly online. Automated detection systems help identify unreliable content at scale.
+---
 
-Dataset
+## Final Project Focus
 
-Primary dataset: WELFake_Dataset.csv
+The main objective of this assignment was:
 
-After cleaning:
+* To introduce **intentional bugs** into the AI system
+* To write **initial self-reflections** explaining the issue
+* To use **GenAI feedback** to improve those reflections
+* To better understand how to debug machine learning systems
 
-Total samples: 72,079
+Detailed bug cases and analysis are documented in the submitted **Google Sheet** and **PDF report**.
 
-Real (1): 37,051
+---
 
-Fake (0): 35,028
+## Model Description
 
-Preprocessing steps:
+The model used in this project includes:
 
-Combined title + text
+* **Embedding Layer** – converts words into dense vectors
+* **Bidirectional LSTM Layer** – captures context from both directions
+* **Dropout Layer** – reduces overfitting
+* **Dense Output Layer (Sigmoid)** – outputs probability for binary classification
 
-Lowercased text
+The model is trained using:
 
-Removed URLs
+* Binary Cross-Entropy Loss
+* Adam Optimizer
 
-Removed punctuation
+---
 
-Removed extra whitespace
+## Data Processing
 
-Removed extremely short entries
+The dataset consists of labeled news articles. The following preprocessing steps are applied:
 
-Data was split 80 percent training and 20 percent testing using stratified sampling.
+* Convert text to lowercase
+* Remove URLs and unnecessary punctuation
+* Combine title and article text
+* Tokenize words into sequences
+* Pad/truncate sequences to a fixed length
 
-Model Architecture
+---
 
-The model uses:
+## Project Structure
 
-Embedding layer
-Bidirectional LSTM (64 units)
-Dense layer (ReLU activation)
-Dropout (0.4)
-Output layer (Sigmoid activation)
-
-Loss function: Binary Cross Entropy
-Optimizer: Adam
-Batch size: 64
-Epochs: up to 6 with early stopping
-
-Results
-
-Test Accuracy: 0.9541
-Test Loss: 0.1145
-
-Confusion Matrix:
-
-[[6790, 216],
-[ 446, 6964]]
-
-Performance Summary:
-
-Fake class
-Precision: 0.9384
-Recall: 0.9692
-F1-score: 0.9535
-
-Real class
-Precision: 0.9699
-Recall: 0.9398
-F1-score: 0.9546
-
-The model performs well on both classes with balanced performance and low misclassification rates.
-
-Project Structure
-
-project-1-fake-news/
-│
-├── src/
-│ └── train_lstm.py
-│
-├── outputs/
-│ ├── accuracy_curve.png
-│ ├── loss_curve.png
-│ ├── confusion_matrix.png
-│
-├── data/
-│ └── WELFake_Dataset.csv
-│
+```
+AI-100-Final-Project/
+├── train_lstm.py
 ├── requirements.txt
-├── report.pdf
+├── tokenizer.json
+├── settings.json
+├── run_metadata.json
+├── accuracy_curve.png
+├── loss_curve.png
+├── confusion_matrix.png
 └── README.md
+```
 
-How to Run
+---
 
-Clone the repository
+## How to Run
 
-git clone YOUR_REPOSITORY_URL
+1. Install dependencies:
 
-Navigate into the project folder
-
-cd project-folder-name
-
-Create virtual environment
-
-python3 -m venv .venv
-source .venv/bin/activate
-
-Install dependencies
-
+```
 python -m pip install -r requirements.txt
+```
 
-Run training
+2. Run the training script:
 
-python src/train_lstm.py
+```
+python train_lstm.py
+```
 
-Note: The trained model file (.keras) is not included due to GitHub file size limits.
-The model can be reproduced by running the training script.
+---
+
+## Notes
+
+* The trained model file (`.keras`) is not included due to GitHub file size limits.
+* The dataset is also not included and can be downloaded from Kaggle.
+* The model can be reproduced by running the training script.
+
+---
+
+## Learning Outcomes
+
+Through this project, we learned:
+
+* How small changes in code can significantly impact model performance
+* How to identify and reason about bugs in machine learning systems
+* How GenAI can assist in improving debugging and reflection skills
+
+---
+
+## Author
+
+Brady Sassano
+
