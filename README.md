@@ -102,5 +102,5 @@ Through this project, we learned:
 
 ## Author
 
-Brady Sassano
+Brady Sassano and Blake Groton
 
